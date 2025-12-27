@@ -3,20 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO Optimization -->
-    <meta name="description" content="PUH - Professional Video Production Portfolio. Editing, Motion Design, Color Grading.">
+    <meta name="description" content="PUH - Professional Video Production Portfolio.">
     <title>PUH Portfolio</title>
     <link rel="stylesheet" href="global.css">
     
     <style>
-        /* VISUAL #4: Анимированный шум */
-        .noise {
-            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMyMjJ4D30DAAAAB3RSTlMABDQzMzMzM7A4RQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAQFJREFUOMuV0MsOgjAMBNBf6Q34/3+iImqMkY0x0Zt4E+PZ7WyhE8R42t5O004d/q4XjP6gT1Qj+qB5oB+qF/qh+qAfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6of4A011H+9/r4iIAAAAASUVORK5CYII=');
-            opacity: 0.05; animation: noiseAnim 0.2s infinite;
-        }
-        @keyframes noiseAnim { 0% {transform: translate(0,0)} 10% {transform: translate(-5%,-5%)} 20% {transform: translate(-10%,5%)} 30% {transform: translate(5%,-10%)} 40% {transform: translate(-5%,15%)} 50% {transform: translate(-10%,5%)} 60% {transform: translate(15%,0)} 70% {transform: translate(0,10%)} 80% {transform: translate(-15%,0)} 90% {transform: translate(10%,5%)} 100% {transform: translate(5%,0)} }
-
         .bento { max-width: 1200px; margin: 0 auto; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; position: relative; z-index: 2; }
         .grid { display: grid; grid-template-columns: 380px 1fr; gap: 24px; width: 100%; align-items: stretch; }
         
@@ -25,7 +16,8 @@
         .logo-box img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 20px rgba(255,183,197,0.2)); }
         
         .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .nav-item { height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); transition: transform 0.3s; }
+        /* Важно: flex-direction по умолчанию column, в CSS мы меняем на row для мобилок */
+        .nav-item { height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); transition: transform 0.3s; position: relative; }
         .nav-item:hover { transform: translateY(-5px); background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent); }
         
         .nav-arrow { position: absolute; top: 25px; right: 25px; font-size: 24px; opacity: 0; transform: translate(-10px,10px); transition: 0.4s; }
@@ -34,8 +26,6 @@
         .tg-wrap { margin-top: auto; width: 100%; }
         .tg-btn { height: 80px; width: 100%; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, rgba(255,183,197,0.08), transparent); transition: 0.3s; }
         .tg-btn:hover { background: linear-gradient(90deg, rgba(255,183,197,0.15), transparent); }
-
-        @media(max-width:900px){ .grid { grid-template-columns: 1fr; } .profile { min-height: auto; } }
     </style>
 </head>
 <body>
@@ -49,9 +39,9 @@
             <div class="glass-card profile fade-up d-1">
                 <div class="logo-box"><img src="logo.png" alt="PUH" loading="lazy" onerror="this.style.display='none'"></div>
                 <div>
-                    <div style="color:var(--accent); letter-spacing:2px; font-weight:600; margin-bottom:10px;">VIDEO PROD</div>
+                    <div style="color:var(--accent); letter-spacing:2px; font-weight:600; margin-bottom:10px; font-size:14px;">VIDEO PROD</div>
                     <h1 class="text-grad">PUH</h1>
-                    <div style="color:var(--muted); line-height:1.6; margin-top:20px;">
+                    <div style="color:var(--muted); line-height:1.6; margin-top:20px; font-size:15px;">
                         Worldwide • Premiere • AE<br>
                         <span style="color:#fff;">Open for work <span style="display:inline-block; width:6px; height:6px; background:#32D74B; border-radius:50%; box-shadow:0 0 8px #32D74B;"></span></span>
                     </div>
@@ -63,27 +53,27 @@
                 <div class="nav-grid">
                     <a href="reels.html" class="glass-card nav-item">
                         <div class="nav-arrow">↗</div>
-                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px;">VERTICAL 9:16</div>
+                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px; margin-bottom: 5px;">VERTICAL 9:16</div>
                         <div style="font-size:24px; font-weight:700;">Рилс & Тик-Ток</div>
                     </a>
                     <a href="horizontal.html" class="glass-card nav-item">
                         <div class="nav-arrow">↗</div>
-                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px;">CINEMA 16:9</div>
-                        <div style="font-size:24px; font-weight:700;">Горизонтальные видео</div>
+                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px; margin-bottom: 5px;">CINEMA 16:9</div>
+                        <div style="font-size:24px; font-weight:700;">Горизонт. видео</div>
                     </a>
                     <a href="special.html" class="glass-card nav-item">
                         <div class="nav-arrow">↗</div>
-                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px;">CREATIVE</div>
+                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px; margin-bottom: 5px;">CREATIVE</div>
                         <div style="font-size:24px; font-weight:700;">Спец. форматы</div>
                     </a>
                     <div class="glass-card nav-item" style="align-items:center; justify-content:center; border-style:dashed; color:var(--muted);">
-                        COMING SOON
+                        <div style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">Coming Soon</div>
                     </div>
                 </div>
                 
                 <div class="tg-wrap">
                     <a href="https://t.me/puhhhh100kg" target="_blank" class="glass-card tg-btn">
-                        <span style="font-size:18px; font-weight:600;">Связаться в Telegram</span>
+                        <span style="font-size:18px; font-weight:600;">Telegram</span>
                         <span style="font-size:28px; color:var(--accent);">✈</span>
                     </a>
                 </div>
@@ -91,5 +81,49 @@
         </div>
     </div>
     <script src="main.js"></script>
+    <!-- Подключаем скрипт фона отдельно, если он в main.js не включен, или оставляем как было -->
+    <script src="bg.js"></script> 
+    <!-- ВНИМАНИЕ: Если у вас весь JS в одном файле, уберите лишний <script>.
+         Я предполагаю, что код для пузырьков (Orb) находится в main.js или отдельном файле.
+         Если код был в HTML, верните его в <script> внизу body. -->
+    <script>
+       // Вставьте сюда код анимации шариков, если он не в main.js
+       // (Тот код из вашего файла text/javascript #1)
+       document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('bg-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            const colors = [{ r: 255, g: 183, b: 197 }, { r: 100, g: 20, b: 80 }, { r: 40, g: 10, b: 60 }];
+            const orbs = []; const numOrbs = 6;
+            class Orb {
+                constructor() { this.init(); }
+                init() {
+                    this.x = Math.random() * width; this.y = Math.random() * height;
+                    this.radius = (Math.random() * 300) + 200; 
+                    this.dx = (Math.random() - 0.5) * 0.8; this.dy = (Math.random() - 0.5) * 0.8;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.alpha = Math.random() * 0.5 + 0.2; this.targetAlpha = this.alpha;
+                }
+                update() {
+                    this.x += this.dx; this.y += this.dy;
+                    if (this.x < -200 || this.x > width + 200) this.dx *= -1;
+                    if (this.y < -200 || this.y > height + 200) this.dy *= -1;
+                    if(Math.random() < 0.01) this.targetAlpha = Math.random() * 0.5 + 0.2;
+                    this.alpha += (this.targetAlpha - this.alpha) * 0.01;
+                }
+                draw() {
+                    ctx.beginPath();
+                    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+                    gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha})`);
+                    gradient.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
+                    ctx.fillStyle = gradient; ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fill();
+                }
+            }
+            function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; orbs.length = 0; for (let i = 0; i < numOrbs; i++) orbs.push(new Orb()); }
+            function animate() { ctx.clearRect(0, 0, width, height); ctx.globalCompositeOperation = 'screen'; orbs.forEach(orb => { orb.update(); orb.draw(); }); requestAnimationFrame(animate); }
+            window.addEventListener('resize', resize); resize(); animate();
+        });
+    </script>
 </body>
 </html>
