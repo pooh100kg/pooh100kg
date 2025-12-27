@@ -1,0 +1,169 @@
+/* --- global.css --- */
+
+:root {
+    --bg: #050505;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --accent: #FFB7C5; /* Sakura Pink */
+    --muted: #888;
+    --ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+
+body {
+    background-color: var(--bg);
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+a { text-decoration: none; color: inherit; cursor: pointer; }
+
+/* --- ФОНОВЫЙ ШУМ --- */
+.noise {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMyMjJ4D30DAAAAB3RSTlMABDQzMzMzM7A4RQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAQFJREFUOMuV0MsOgjAMBNBf6Q34/3+iImqMkY0x0Zt4E+PZ7WyhE8R42t5O004d/q4XjP6gT1Qj+qB5oB+qF/qh+qAfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6of4A011H+9/r4iIAAAAASUVORK5CYII=');
+    opacity: 0.05; animation: noiseAnim 0.2s infinite;
+}
+@keyframes noiseAnim {
+    0% { transform: translate(0,0) } 10% { transform: translate(-5%,-5%) } 20% { transform: translate(-10%,5%) }
+    30% { transform: translate(5%,-10%) } 40% { transform: translate(-5%,15%) } 50% { transform: translate(-10%,5%) }
+    60% { transform: translate(15%,0) } 70% { transform: translate(0,10%) } 80% { transform: translate(-15%,0) }
+    90% { transform: translate(10%,5%) } 100% { transform: translate(5%,0) }
+}
+
+/* --- UI ELEMENTS --- */
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s var(--ease);
+}
+.text-grad {
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    font-size: 60px; font-weight: 800; line-height: 1; letter-spacing: -2px;
+}
+
+/* --- ШАПКА --- */
+.uni-header {
+    position: sticky; top: 20px; z-index: 100;
+    display: flex; align-items: stretch; justify-content: space-between;
+    height: 80px; margin-bottom: 40px; border-radius: 100px;
+    backdrop-filter: blur(40px); overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08); transition: transform 0.3s ease;
+}
+.uni-back {
+    display: flex; align-items: center; justify-content: center;
+    width: 140px; height: 100%; color: rgba(255, 255, 255, 0.6);
+    text-decoration: none; font-weight: 500; font-size: 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease;
+}
+.uni-back:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
+.uni-title-box {
+    flex-grow: 1; display: flex; align-items: center; justify-content: center; position: relative;
+    background: radial-gradient(ellipse at center, rgba(255, 183, 197, 0.15) 0%, transparent 70%);
+    box-shadow: inset 0 0 30px rgba(255, 183, 197, 0.05);
+}
+.uni-title-text {
+    font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.5px;
+    text-shadow: 0 0 25px rgba(255, 183, 197, 0.8), 0 0 10px rgba(255, 183, 197, 0.5);
+}
+.uni-spacer { width: 140px; height: 100%; border-left: 1px solid rgba(255, 255, 255, 0.05); }
+@media (max-width: 768px) {
+    .uni-header { height: 60px; margin-bottom: 25px; }
+    .uni-back, .uni-spacer { width: 70px; font-size: 13px; }
+    .uni-title-text { font-size: 15px; }
+    .uni-back span { display: none; } .uni-back::after { content: '←'; font-size: 20px; }
+}
+
+/* --- ANIMATIONS & LOADERS --- */
+.fade-up { animation: fadeUp 0.8s var(--ease) forwards; opacity: 0; transform: translateY(30px); }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+#preloader {
+    position: fixed; inset: 0; background: #000; z-index: 10000;
+    display: flex; align-items: center; justify-content: center; transition: opacity 0.6s ease;
+}
+.loader {
+    width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: var(--accent); border-radius: 50%; animation: spin 1s infinite linear;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#bg-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+/* --- LIGHTBOX --- */
+.lightbox {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: 0.4s;
+}
+.lightbox.active { opacity: 1; pointer-events: all; }
+.close-lb {
+    position: absolute; top: 30px; right: 30px; font-size: 40px; color: #fff;
+    cursor: pointer; opacity: 0.7; transition: 0.3s; z-index: 10001; line-height: 1;
+}
+.close-lb:hover { opacity: 1; transform: scale(1.1); color: var(--accent); }
+.lb-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); font-size: 50px; padding: 20px;
+    cursor: pointer; opacity: 0.4; transition: 0.3s; color: #fff; user-select: none; z-index: 10001;
+}
+.lb-nav:hover { opacity: 1; scale: 1.1; }
+.prev { left: 20px; } .next { right: 20px; }
+@media(max-width: 768px) { .lb-nav { display: none; } }
+
+/* --- КАРТОЧКИ И ПЛЕЕР (ОБНОВЛЕНО: БЕЗ КАРТИНОК) --- */
+.tilt-card { transform-style: preserve-3d; will-change: transform; }
+
+.card {
+    position: relative; overflow: hidden; border-radius: 24px;
+    background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.card-media-wrapper {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    cursor: pointer; z-index: 1;
+}
+/* Видео всегда видно, оно само себе постер */
+.card-video {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 1; /* Всегда видно! */
+    z-index: 1; position: absolute; top: 0; left: 0;
+    transition: filter 0.3s ease;
+}
+/* Затемнение снизу */
+.card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 30%, transparent 100%);
+    z-index: 4; pointer-events: none;
+}
+/* Текст */
+.card-meta {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    z-index: 5; pointer-events: none; transition: transform 0.3s ease;
+}
+.card:hover .card-meta { transform: translateY(-40px); }
+
+/* Контролы */
+.mini-controls {
+    position: absolute; bottom: 15px; left: 15px; right: 15px;
+    z-index: 6; opacity: 0; transform: translateY(10px);
+    transition: all 0.3s ease; display: flex; flex-direction: column; gap: 6px;
+}
+.card:hover .mini-controls { opacity: 1; transform: translateY(0); }
+.progress-wrap {
+    width: 100%; height: 4px; background: rgba(255,255,255,0.3);
+    border-radius: 2px; cursor: pointer; overflow: hidden; position: relative;
+}
+.progress-fill {
+    height: 100%; background: var(--accent); width: 0%;
+    box-shadow: 0 0 10px var(--accent); transition: width 0.1s linear;
+}
+.controls-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.8);
+}

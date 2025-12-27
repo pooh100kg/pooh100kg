@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Optimization -->
+    <meta name="description" content="PUH - Professional Video Production Portfolio. Editing, Motion Design, Color Grading.">
+    <title>PUH Portfolio</title>
+    <link rel="stylesheet" href="global.css">
+    
+    <style>
+        /* VISUAL #4: Анимированный шум */
+        .noise {
+            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMyMjJ4D30DAAAAB3RSTlMABDQzMzMzM7A4RQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAQFJREFUOMuV0MsOgjAMBNBf6Q34/3+iImqMkY0x0Zt4E+PZ7WyhE8R42t5O004d/q4XjP6gT1Qj+qB5oB+qF/qh+qAfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6of4A011H+9/r4iIAAAAASUVORK5CYII=');
+            opacity: 0.05; animation: noiseAnim 0.2s infinite;
+        }
+        @keyframes noiseAnim { 0% {transform: translate(0,0)} 10% {transform: translate(-5%,-5%)} 20% {transform: translate(-10%,5%)} 30% {transform: translate(5%,-10%)} 40% {transform: translate(-5%,15%)} 50% {transform: translate(-10%,5%)} 60% {transform: translate(15%,0)} 70% {transform: translate(0,10%)} 80% {transform: translate(-15%,0)} 90% {transform: translate(10%,5%)} 100% {transform: translate(5%,0)} }
+
+        .bento { max-width: 1200px; margin: 0 auto; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; position: relative; z-index: 2; }
+        .grid { display: grid; grid-template-columns: 380px 1fr; gap: 24px; width: 100%; align-items: stretch; }
+        
+        .profile { display: flex; flex-direction: column; padding: 40px; height: 100%; min-height: 600px; justify-content: space-between; }
+        .logo-box { height: 250px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .logo-box img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 20px rgba(255,183,197,0.2)); }
+        
+        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .nav-item { height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); transition: transform 0.3s; }
+        .nav-item:hover { transform: translateY(-5px); background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent); }
+        
+        .nav-arrow { position: absolute; top: 25px; right: 25px; font-size: 24px; opacity: 0; transform: translate(-10px,10px); transition: 0.4s; }
+        .nav-item:hover .nav-arrow { opacity: 1; transform: translate(0,0); color: var(--accent); }
+        
+        .tg-wrap { margin-top: auto; width: 100%; }
+        .tg-btn { height: 80px; width: 100%; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, rgba(255,183,197,0.08), transparent); transition: 0.3s; }
+        .tg-btn:hover { background: linear-gradient(90deg, rgba(255,183,197,0.15), transparent); }
+
+        @media(max-width:900px){ .grid { grid-template-columns: 1fr; } .profile { min-height: auto; } }
+    </style>
+</head>
+<body>
+    <div id="preloader"><div class="loader"></div></div>
+    <div class="noise"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="bento">
+        <div class="grid">
+            <!-- PROFILE -->
+            <div class="glass-card profile fade-up d-1">
+                <div class="logo-box"><img src="logo.png" alt="PUH" loading="lazy" onerror="this.style.display='none'"></div>
+                <div>
+                    <div style="color:var(--accent); letter-spacing:2px; font-weight:600; margin-bottom:10px;">VIDEO PROD</div>
+                    <h1 class="text-grad">PUH</h1>
+                    <div style="color:var(--muted); line-height:1.6; margin-top:20px;">
+                        Worldwide • Premiere • AE<br>
+                        <span style="color:#fff;">Open for work <span style="display:inline-block; width:6px; height:6px; background:#32D74B; border-radius:50%; box-shadow:0 0 8px #32D74B;"></span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div style="display:flex; flex-direction:column; gap:24px;" class="fade-up d-2">
+                <div class="nav-grid">
+                    <a href="reels.html" class="glass-card nav-item">
+                        <div class="nav-arrow">↗</div>
+                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px;">VERTICAL 9:16</div>
+                        <div style="font-size:24px; font-weight:700;">Рилс & Тик-Ток</div>
+                    </a>
+                    <a href="horizontal.html" class="glass-card nav-item">
+                        <div class="nav-arrow">↗</div>
+                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px;">CINEMA 16:9</div>
+                        <div style="font-size:24px; font-weight:700;">Горизонтальные видео</div>
+                    </a>
+                    <a href="special.html" class="glass-card nav-item">
+                        <div class="nav-arrow">↗</div>
+                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px;">CREATIVE</div>
+                        <div style="font-size:24px; font-weight:700;">Спец. форматы</div>
+                    </a>
+                    <div class="glass-card nav-item" style="align-items:center; justify-content:center; border-style:dashed; color:var(--muted);">
+                        COMING SOON
+                    </div>
+                </div>
+                
+                <div class="tg-wrap">
+                    <a href="https://t.me/puhhhh100kg" target="_blank" class="glass-card tg-btn">
+                        <span style="font-size:18px; font-weight:600;">Связаться в Telegram</span>
+                        <span style="font-size:28px; color:var(--accent);">✈</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
