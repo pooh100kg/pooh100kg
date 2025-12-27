@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reels - PUH</title>
+    <link rel="stylesheet" href="global.css">
+    <style>
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px 100px; position: relative; z-index: 2; }
+        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .card { aspect-ratio: 9/16; }
+        @media(max-width:900px){ .video-grid { grid-template-columns: 1fr; } }
+        
+        /* Стили Универсального Лайтбокса */
+        .lb-content { width: 90%; position: relative; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .lb-element { width: 100%; height: 100%; border: none; border-radius: 12px; box-shadow: 0 0 50px rgba(0,0,0,0.5); display: none; background: #000; }
+        .lb-element.active { display: block; }
+        
+        /* Спиннер загрузки */
+        .loading-spinner { position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:30px; height:30px; border:3px solid rgba(255,255,255,0.1); border-top-color:var(--accent); border-radius:50%; animation: spin 1s linear infinite; pointer-events:none; transition: opacity 0.3s; }
+        @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    </style>
+</head>
+<body data-page="reels">
+    <div id="preloader"><div class="loader"></div></div>
+    <div class="noise"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС -->
+    <div class="lightbox" id="videoLightbox">
+        <div class="close-lb" onclick="closeLightbox()">×</div>
+        <div class="lb-nav prev" onclick="navLightbox(-1)">‹</div>
+        <div class="lb-content">
+            <iframe id="lightboxFrame" class="lb-element" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <video id="lightboxVideo" class="lb-element" controls playsinline><source src="" type="video/mp4"></video>
+        </div>
+        <div class="lb-nav next" onclick="navLightbox(1)">›</div>
+    </div>
+
+    <div class="container">
+        <div class="video-grid"></div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
