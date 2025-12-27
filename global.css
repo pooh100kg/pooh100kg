@@ -152,76 +152,97 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.8);
 }
 
-/* --- МОБИЛЬНАЯ АДАПТАЦИЯ (Сильные изменения) --- */
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ (ИСПРАВЛЕНА) --- */
 @media (max-width: 900px) {
-    /* Общие стили для сеток на всех страницах */
+    /* СЕТКА */
     .grid, .video-grid { grid-template-columns: 1fr !important; }
     
-    .lb-nav { display: none; } /* Убрать стрелки лайтбокса на моб */
+    /* ЛАЙТБОКС */
+    .lb-nav { display: none; }
     
-    /* Шапка внутренних страниц */
+    /* ШАПКА ВНУТРЕННИХ СТРАНИЦ */
     .uni-header { height: 60px; margin-bottom: 25px; border-radius: 16px; }
-    .uni-back { width: 60px; font-size: 0; } /* Скрываем текст "Назад" */
+    .uni-back { width: 60px; font-size: 0; }
     .uni-back::after { content: '←'; font-size: 24px; }
-    .uni-spacer { display: none; } /* Убираем правый спейсер */
-    .uni-title-box { justify-content: center; padding-right: 60px; /* Компенсация кнопки назад */ }
+    .uni-spacer { display: none; }
+    .uni-title-box { justify-content: center; padding-right: 60px; }
     .uni-title-text { font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* Карточки */
-    .card:hover .card-meta { transform: translateY(0); } /* На таче нет ховера */
-    .mini-controls { display: none; } /* На телефоне мини-контролы не нужны */
+    /* КАРТОЧКИ */
+    .card:hover .card-meta { transform: translateY(0); }
+    .mini-controls { display: none; }
 }
 
 @media (max-width: 700px) {
-    /* Главная страница */
-    .bento { padding: 80px 15px 40px !important; min-height: auto !important; display: block !important; }
+    /* Главный контейнер */
+    .bento { padding: 40px 15px !important; min-height: auto !important; display: block !important; }
     
+    /* ПРОФИЛЬ (Логотип) - делаем компактнее */
     .profile { 
         min-height: auto !important; 
-        padding: 30px 20px !important; 
-        margin-bottom: 20px;
+        padding: 25px 20px !important; /* Меньше отступы */
+        margin-bottom: 15px;
         text-align: center;
     }
-    .logo-box { height: 160px !important; margin-bottom: 15px; }
-    .profile div { align-items: center; } /* Центровка текста */
+    .logo-box { height: 100px !important; margin-bottom: 10px; } /* Сильно уменьшил высоту */
+    .text-grad { font-size: 36px !important; margin: 5px 0; } /* Чуть меньше заголовок */
+    .profile div { align-items: center; } 
     
-    .text-grad { font-size: 42px !important; margin: 10px 0; }
-    
-    /* Навигация - делаем 1 колонку */
+    /* НАВИГАЦИЯ (Кнопки) */
     .nav-grid { 
         grid-template-columns: 1fr !important; 
-        gap: 15px !important; 
+        gap: 12px !important; /* Чуть меньше отступ между кнопками */
     }
     
     .nav-item { 
         height: auto !important; 
-        min-height: 100px; /* Компактнее */
-        padding: 20px !important;
-        /* Можно сделать горизонтальное расположение контента внутри кнопки */
-        flex-direction: row !important;
+        min-height: 85px; /* Компактная высота */
+        padding: 15px 20px !important;
+        flex-direction: row !important; /* Элементы в строку (текст слева, стрелка справа) */
         align-items: center;
         justify-content: space-between;
     }
+
+    /* Внутренности кнопки - переопределяем порядок для красоты */
+    .nav-content {
+        text-align: left; /* Текст строго слева */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
     
-    /* Перестановка элементов внутри кнопки для строки */
-    .nav-item > div:last-child { 
-        text-align: right; 
-        order: 2; 
-        font-size: 18px !important; /* Чуть меньше шрифт заголовка */
+    /* Маленький заголовок (Vertical) */
+    .nav-sub {
+        font-size: 10px !important;
+        letter-spacing: 2px;
+        color: var(--accent);
+        opacity: 0.9;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        font-weight: 600;
     }
-    .nav-item > div:nth-child(2) {
-        text-align: left;
-        order: 1;
-        margin-bottom: 0 !important;
+    
+    /* Большой заголовок (Рилс) */
+    .nav-title {
+        font-size: 18px !important;
+        font-weight: 700;
+        line-height: 1.2;
     }
+
+    /* Стрелка всегда видна и справа */
     .nav-arrow { 
-        display: none; /* Стрелка мешает в мобильном дизайне строки */ 
+        position: static !important; 
+        opacity: 0.5 !important; 
+        transform: none !important;
+        font-size: 20px !important;
+        margin-left: 10px;
     }
     
     /* Кнопка телеграм */
     .tg-btn { 
         padding: 0 25px !important; 
-        height: 70px !important;
+        height: 60px !important;
     }
-    .tg-btn span:first-child { font-size: 16px !important; }
+    .tg-btn span:first-child { font-size: 15px !important; }
+    .tg-btn span:last-child { font-size: 22px !important; }
 }
