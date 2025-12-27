@@ -24,7 +24,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
 /* --- ФОНОВЫЙ ШУМ --- */
 .noise {
     position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMyMjJ4D30DAAAAB3RSTlMABDQzMzMzM7A4RQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAQFJREFUOMuV0MsOgjAMBNBf6Q34/3+iImqMkY0x0Zt4E+PZ7WyhE8R42t5O004d/q4XjP6gT1Qj+qB5oB+qF/qh+qAfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6of4A011H+9/r4iIAAAAASUVORK5CYII=');
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMyMjJ4D30DAAAAB3RSTlMABDQzMzMzM7A4RQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAQFJREFUOMuV0MsOgjAMBNBf6Q34/3+iImqMkY0x0Zt4E+PZ7WyhE8R42t5O004d/q4XjP6gT1Qj+qB5oB+qF/qh+qAfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oX+qH6oB+qF/qh+qAfqhf6ofqgH6oP+qF6oR+qD/qheqEfqg/6oXqhH6oP+qF6oR+qD/qheqEfqg/6of4A011H+9/r4iIAAAAASUVORK5CYII=');
     opacity: 0.05; animation: noiseAnim 0.2s infinite;
 }
 @keyframes noiseAnim {
@@ -50,7 +50,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     font-size: 60px; font-weight: 800; line-height: 1; letter-spacing: -2px;
 }
 
-/* --- ШАПКА --- */
+/* --- ШАПКА ВНУТРЕННИХ СТРАНИЦ --- */
 .uni-header {
     position: sticky; top: 20px; z-index: 100;
     display: flex; align-items: stretch; justify-content: space-between;
@@ -73,14 +73,9 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
 .uni-title-text {
     font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.5px;
     text-shadow: 0 0 25px rgba(255, 183, 197, 0.8), 0 0 10px rgba(255, 183, 197, 0.5);
+    text-align: center; padding: 0 10px;
 }
 .uni-spacer { width: 140px; height: 100%; border-left: 1px solid rgba(255, 255, 255, 0.05); }
-@media (max-width: 768px) {
-    .uni-header { height: 60px; margin-bottom: 25px; }
-    .uni-back, .uni-spacer { width: 70px; font-size: 13px; }
-    .uni-title-text { font-size: 15px; }
-    .uni-back span { display: none; } .uni-back::after { content: '←'; font-size: 20px; }
-}
 
 /* --- ANIMATIONS & LOADERS --- */
 .fade-up { animation: fadeUp 0.8s var(--ease) forwards; opacity: 0; transform: translateY(30px); }
@@ -108,47 +103,37 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     position: absolute; top: 30px; right: 30px; font-size: 40px; color: #fff;
     cursor: pointer; opacity: 0.7; transition: 0.3s; z-index: 10001; line-height: 1;
 }
-.close-lb:hover { opacity: 1; transform: scale(1.1); color: var(--accent); }
 .lb-nav {
     position: absolute; top: 50%; transform: translateY(-50%); font-size: 50px; padding: 20px;
     cursor: pointer; opacity: 0.4; transition: 0.3s; color: #fff; user-select: none; z-index: 10001;
 }
 .lb-nav:hover { opacity: 1; scale: 1.1; }
 .prev { left: 20px; } .next { right: 20px; }
-@media(max-width: 768px) { .lb-nav { display: none; } }
 
-/* --- КАРТОЧКИ И ПЛЕЕР (ОБНОВЛЕНО: БЕЗ КАРТИНОК) --- */
+/* --- КАРТОЧКИ ВИДЕО --- */
 .tilt-card { transform-style: preserve-3d; will-change: transform; }
-
 .card {
     position: relative; overflow: hidden; border-radius: 24px;
     background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 .card-media-wrapper {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    cursor: pointer; z-index: 1;
+    position: absolute; inset: 0; width: 100%; height: 100%; cursor: pointer; z-index: 1;
 }
-/* Видео всегда видно, оно само себе постер */
 .card-video {
-    width: 100%; height: 100%; object-fit: cover;
-    opacity: 1; /* Всегда видно! */
+    width: 100%; height: 100%; object-fit: cover; opacity: 1;
     z-index: 1; position: absolute; top: 0; left: 0;
-    transition: filter 0.3s ease;
 }
-/* Затемнение снизу */
 .card-overlay {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 30%, transparent 100%);
     z-index: 4; pointer-events: none;
 }
-/* Текст */
 .card-meta {
     position: absolute; bottom: 20px; left: 20px; right: 20px;
     z-index: 5; pointer-events: none; transition: transform 0.3s ease;
 }
 .card:hover .card-meta { transform: translateY(-40px); }
 
-/* Контролы */
 .mini-controls {
     position: absolute; bottom: 15px; left: 15px; right: 15px;
     z-index: 6; opacity: 0; transform: translateY(10px);
@@ -160,10 +145,83 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     border-radius: 2px; cursor: pointer; overflow: hidden; position: relative;
 }
 .progress-fill {
-    height: 100%; background: var(--accent); width: 0%;
-    box-shadow: 0 0 10px var(--accent); transition: width 0.1s linear;
+    height: 100%; background: var(--accent); width: 0%; transition: width 0.1s linear;
 }
 .controls-row {
     display: flex; justify-content: space-between; align-items: center;
     font-size: 11px; font-family: monospace; color: rgba(255,255,255,0.8);
+}
+
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ (Сильные изменения) --- */
+@media (max-width: 900px) {
+    /* Общие стили для сеток на всех страницах */
+    .grid, .video-grid { grid-template-columns: 1fr !important; }
+    
+    .lb-nav { display: none; } /* Убрать стрелки лайтбокса на моб */
+    
+    /* Шапка внутренних страниц */
+    .uni-header { height: 60px; margin-bottom: 25px; border-radius: 16px; }
+    .uni-back { width: 60px; font-size: 0; } /* Скрываем текст "Назад" */
+    .uni-back::after { content: '←'; font-size: 24px; }
+    .uni-spacer { display: none; } /* Убираем правый спейсер */
+    .uni-title-box { justify-content: center; padding-right: 60px; /* Компенсация кнопки назад */ }
+    .uni-title-text { font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* Карточки */
+    .card:hover .card-meta { transform: translateY(0); } /* На таче нет ховера */
+    .mini-controls { display: none; } /* На телефоне мини-контролы не нужны */
+}
+
+@media (max-width: 700px) {
+    /* Главная страница */
+    .bento { padding: 80px 15px 40px !important; min-height: auto !important; display: block !important; }
+    
+    .profile { 
+        min-height: auto !important; 
+        padding: 30px 20px !important; 
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .logo-box { height: 160px !important; margin-bottom: 15px; }
+    .profile div { align-items: center; } /* Центровка текста */
+    
+    .text-grad { font-size: 42px !important; margin: 10px 0; }
+    
+    /* Навигация - делаем 1 колонку */
+    .nav-grid { 
+        grid-template-columns: 1fr !important; 
+        gap: 15px !important; 
+    }
+    
+    .nav-item { 
+        height: auto !important; 
+        min-height: 100px; /* Компактнее */
+        padding: 20px !important;
+        /* Можно сделать горизонтальное расположение контента внутри кнопки */
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    /* Перестановка элементов внутри кнопки для строки */
+    .nav-item > div:last-child { 
+        text-align: right; 
+        order: 2; 
+        font-size: 18px !important; /* Чуть меньше шрифт заголовка */
+    }
+    .nav-item > div:nth-child(2) {
+        text-align: left;
+        order: 1;
+        margin-bottom: 0 !important;
+    }
+    .nav-arrow { 
+        display: none; /* Стрелка мешает в мобильном дизайне строки */ 
+    }
+    
+    /* Кнопка телеграм */
+    .tg-btn { 
+        padding: 0 25px !important; 
+        height: 70px !important;
+    }
+    .tg-btn span:first-child { font-size: 16px !important; }
 }
