@@ -11,14 +11,29 @@
         .bento { max-width: 1200px; margin: 0 auto; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; position: relative; z-index: 2; }
         .grid { display: grid; grid-template-columns: 380px 1fr; gap: 24px; width: 100%; align-items: stretch; }
         
+        /* Стили для десктопа (по умолчанию) */
         .profile { display: flex; flex-direction: column; padding: 40px; height: 100%; min-height: 600px; justify-content: space-between; }
-        .logo-box { height: 250px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .logo-box { height: 250px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; transition: height 0.3s; }
         .logo-box img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 20px rgba(255,183,197,0.2)); }
         
         .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        /* Важно: flex-direction по умолчанию column, в CSS мы меняем на row для мобилок */
-        .nav-item { height: 220px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); transition: transform 0.3s; position: relative; }
+        
+        /* Базовый стиль кнопок (Desktop) */
+        .nav-item { 
+            height: 220px; 
+            padding: 30px; 
+            display: flex; 
+            flex-direction: column; /* На ПК вертикально */
+            justify-content: flex-end; 
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent); 
+            transition: transform 0.3s; 
+            position: relative; 
+        }
         .nav-item:hover { transform: translateY(-5px); background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent); }
+        
+        /* Текстовые стили по умолчанию */
+        .nav-sub { font-size:14px; opacity:0.7; letter-spacing:1px; margin-bottom: 5px; transition: 0.3s; }
+        .nav-title { font-size:24px; font-weight:700; transition: 0.3s; }
         
         .nav-arrow { position: absolute; top: 25px; right: 25px; font-size: 24px; opacity: 0; transform: translate(-10px,10px); transition: 0.4s; }
         .nav-item:hover .nav-arrow { opacity: 1; transform: translate(0,0); color: var(--accent); }
@@ -35,7 +50,7 @@
 
     <div class="bento">
         <div class="grid">
-            <!-- PROFILE -->
+            <!-- PROFILE CARD -->
             <div class="glass-card profile fade-up d-1">
                 <div class="logo-box"><img src="logo.png" alt="PUH" loading="lazy" onerror="this.style.display='none'"></div>
                 <div>
@@ -48,26 +63,42 @@
                 </div>
             </div>
 
-            <!-- NAVIGATION -->
+            <!-- NAVIGATION BUTTONS -->
             <div style="display:flex; flex-direction:column; gap:24px;" class="fade-up d-2">
                 <div class="nav-grid">
+                    
+                    <!-- Button 1 -->
                     <a href="reels.html" class="glass-card nav-item">
                         <div class="nav-arrow">↗</div>
-                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px; margin-bottom: 5px;">VERTICAL 9:16</div>
-                        <div style="font-size:24px; font-weight:700;">Рилс & Тик-Ток</div>
+                        <div class="nav-content">
+                            <div class="nav-sub">VERTICAL 9:16</div>
+                            <div class="nav-title">Рилс & Тик-Ток</div>
+                        </div>
                     </a>
+
+                    <!-- Button 2 -->
                     <a href="horizontal.html" class="glass-card nav-item">
                         <div class="nav-arrow">↗</div>
-                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px; margin-bottom: 5px;">CINEMA 16:9</div>
-                        <div style="font-size:24px; font-weight:700;">Горизонт. видео</div>
+                        <div class="nav-content">
+                            <div class="nav-sub">CINEMA 16:9</div>
+                            <div class="nav-title">Горизонт. видео</div>
+                        </div>
                     </a>
+
+                    <!-- Button 3 -->
                     <a href="special.html" class="glass-card nav-item">
                         <div class="nav-arrow">↗</div>
-                        <div style="font-size:14px; opacity:0.7; letter-spacing:1px; margin-bottom: 5px;">CREATIVE</div>
-                        <div style="font-size:24px; font-weight:700;">Спец. форматы</div>
+                        <div class="nav-content">
+                            <div class="nav-sub">CREATIVE</div>
+                            <div class="nav-title">Спец. форматы</div>
+                        </div>
                     </a>
-                    <div class="glass-card nav-item" style="align-items:center; justify-content:center; border-style:dashed; color:var(--muted);">
-                        <div style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">Coming Soon</div>
+
+                    <!-- Button 4 (Placeholder) -->
+                    <div class="glass-card nav-item" style="border-style:dashed; color:var(--muted); justify-content: center; align-items: center;">
+                        <div class="nav-content" style="text-align:center;">
+                             <div class="nav-sub" style="margin:0;">COMING SOON</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -80,22 +111,17 @@
             </div>
         </div>
     </div>
+
     <script src="main.js"></script>
-    <!-- Подключаем скрипт фона отдельно, если он в main.js не включен, или оставляем как было -->
-    <script src="bg.js"></script> 
-    <!-- ВНИМАНИЕ: Если у вас весь JS в одном файле, уберите лишний <script>.
-         Я предполагаю, что код для пузырьков (Orb) находится в main.js или отдельном файле.
-         Если код был в HTML, верните его в <script> внизу body. -->
     <script>
-       // Вставьте сюда код анимации шариков, если он не в main.js
-       // (Тот код из вашего файла text/javascript #1)
+       // Скрипт пузырьков (Фон)
        document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('bg-canvas');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
             let width, height;
             const colors = [{ r: 255, g: 183, b: 197 }, { r: 100, g: 20, b: 80 }, { r: 40, g: 10, b: 60 }];
-            const orbs = []; const numOrbs = 6;
+            const numOrbs = 6; const orbs = [];
             class Orb {
                 constructor() { this.init(); }
                 init() {
